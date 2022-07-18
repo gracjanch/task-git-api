@@ -23,13 +23,14 @@ public class GitApiConnection {
             String repName = gitInfoDto.getName().toLowerCase();
 
             if (repName.equals(repositoryName.toLowerCase())) {
-                return GitInfo.builder()
-                        .fullName(gitInfoDto.getFull_name())
-                        .description(gitInfoDto.getDescription())
-                        .cloneUrl(gitInfoDto.getClone_url())
-                        .stars(gitInfoDto.getStargazers_count())
-                        .createdAt(gitInfoDto.getCreated_at())
-                        .build();
+                GitInfo gitInfo = new GitInfo();
+                gitInfo.setFullName(gitInfoDto.getFull_name());
+                gitInfo.setDescription(gitInfoDto.getDescription());
+                gitInfo.setCloneUrl(gitInfoDto.getClone_url());
+                gitInfo.setStars(gitInfoDto.getStargazers_count());
+                gitInfo.setCreatedAt(gitInfoDto.getCreated_at());
+
+                return gitInfo;
             }
         }
         throw new RepositoryNotExistsException();

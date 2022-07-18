@@ -15,4 +15,6 @@ public class GitInfoDto {
     private String clone_url;
     private Integer stargazers_count;
     private LocalDateTime created_at;
+
+
 }
