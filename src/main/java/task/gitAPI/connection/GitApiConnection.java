@@ -3,6 +3,8 @@ package task.gitAPI.connection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import task.gitAPI.exception.RepositoryNotExistsException;
+import task.gitAPI.exception.UserNotExistsException;
 import task.gitAPI.model.GitInfo;
 import task.gitAPI.model.GitInfoDto;
 
@@ -30,13 +32,17 @@ public class GitApiConnection {
                         .build();
             }
         }
-        return null;
+        throw new RepositoryNotExistsException();
     }
 
     private GitInfoDto[] callGitApi(String owner) {
-        return restTemplate.getForObject(
-                GIT_API_URL + "{owner}/repos",
-                GitInfoDto[].class,
-                owner);
+        try {
+            return restTemplate.getForObject(
+                    GIT_API_URL + "{owner}/repos",
+                    GitInfoDto[].class,
+                    owner);
+        } catch (Exception e) {
+            throw new UserNotExistsException();
+        }
     }
 }
