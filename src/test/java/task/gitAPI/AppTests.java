@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 public class AppTests {
 
-    private static final String GIT_API_URL = "http://localhost:8080/repositories/";
+    private static final String GIT_API_URL = "https://task-git-api.herokuapp.com/repositories/";
     private static final String CORRECT_USER_NAME = "gracjanch";
     private static final String CORRECT_REPOSITORY_NAME = "car-rental-service";
 
